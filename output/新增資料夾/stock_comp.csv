@@ -1,0 +1,41 @@
+二次加權,一次
+result_train_2009_Q1-Q2(2009 Q1).csv,
+AAPL[0](2)MSFT[18](1),IBM[10](1)
+result_train_2009_Q3-Q4(2009 Q1).csv,
+KO[14](4)MRK[17](8)MSFT[18](1)NKE[19](14)V[25](3),JNJ[12](20)KO[14](17)MMM[16](9)MSFT[18](23)V[25](2)WBA[27](14)
+result_train_2010_Q1-Q2(2010 Q1).csv,
+AAPL[0](1),AAPL[0](2)BA[2](3)MCD[15](1)
+result_train_2010_Q3-Q4(2010 Q1).csv,
+HD[9](7)KO[14](2)XOM[29](1),HD[9](18)KO[14](1)MCD[15](10)XOM[29](4)
+result_train_2011_Q1-Q2(2011 Q1).csv,
+MCD[15](1)PFE[20](5)UNH[23](2),MCD[15](16)PFE[20](2)UNH[23](1)
+result_train_2011_Q3-Q4(2011 Q1).csv,
+HD[9](2)MCD[15](1),AAPL[0](2)CSCO[4](3)MCD[15](1)
+result_train_2012_Q1-Q2(2012 Q1).csv,
+KO[14](4)VZ[26](1)WMT[28](3),DIS[6](1)HD[9](2)KO[14](8)NKE[19](11)TRV[22](12)UNH[23](5)VZ[26](19)WMT[28](15)
+result_train_2012_Q3-Q4(2012 Q1).csv,
+V[25](1),HD[9](3)JNJ[12](11)NKE[19](8)V[25](2)
+result_train_2013_Q1-Q2(2013 Q1).csv,
+BA[2](1)CSCO[4](10)INTC[11](5)UNH[23](8),AXP[1](3)BA[2](12)JNJ[12](1)JPM[13](11)MCD[15](14)MMM[16](5)MRK[17](8)PG[21](15)UNH[23](18)V[25](9)
+result_train_2013_Q3-Q4(2013 Q1).csv,
+AAPL[0](9)BA[2](2)DD[7](13)MSFT[18](8)NKE[19](3)UNH[23](28),AAPL[0](1)BA[2](4)DD[7](5)NKE[19](2)
+result_train_2014_Q1-Q2(2014 Q1).csv,
+AAPL[0](1)CAT[3](4)CSCO[4](5)DD[7](14)INTC[11](2)MCD[15](11),CAT[3](1)CSCO[4](8)DD[7](3)JNJ[12](4)MCD[15](10)MRK[17](5)
+result_train_2014_Q3-Q4(2014 Q1).csv,
+HD[9](9)NKE[19](5)PG[21](3)WBA[27](7)WMT[28](4),GS[8](3)HD[9](2)INTC[11](8)NKE[19](5)PG[21](1)
+result_train_2015_Q1-Q2(2015 Q1).csv,
+DIS[6](5)GS[8](2)MRK[17](17)NKE[19](1),DIS[6](1)DD[7](3)GS[8](16)MRK[17](15)NKE[19](6)UNH[23](2)
+result_train_2015_Q3-Q4(2015 Q1).csv,
+HD[9](2)MCD[15](1),HD[9](1)NKE[19](2)
+result_train_2016_Q1-Q2(2016 Q1).csv,
+JNJ[12](1)PFE[20](3)WMT[28](8)XOM[29](2),JNJ[12](1)WMT[28](4)XOM[29](2)
+result_train_2016_Q3-Q4(2016 Q1).csv,
+AAPL[0](17)BA[2](3)CVX[5](1)JPM[13](2),AAPL[0](5)BA[2](8)JPM[13](3)V[25](10)
+result_train_2017_Q1-Q2(2017 Q1).csv,
+KO[14](3)MCD[15](1)MMM[16](2),DIS[6](20)KO[14](13)MCD[15](3)MMM[16](5)V[25](1)
+result_train_2017_Q3-Q4(2017 Q1).csv,
+AAPL[0](21)AXP[1](4)CAT[3](1)CSCO[4](2)HD[9](3)MCD[15](8),AAPL[0](8)BA[2](3)CVX[5](10)DD[7](12)HD[9](14)MCD[15](5)MSFT[18](4)PFE[20](15)UNH[23](6)V[25](2)
+result_train_2018_Q1-Q2(2018 Q1).csv,
+INTC[11](8)NKE[19](1)V[25](2),INTC[11](5)MSFT[18](1)NKE[19](3)V[25](2)
+result_train_2018_Q3-Q4(2018 Q1).csv,
+MCD[15](3)MRK[17](1)PG[21](2),MRK[17](1)PG[21](2)
