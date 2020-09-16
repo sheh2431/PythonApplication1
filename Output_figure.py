@@ -8,14 +8,14 @@ def mkdir(path):
 	if  not folder:
 		os.makedirs(path)
 
-		#"Y2Y", "Y2H", "Y2Q", "Y2M", "H2H", "H2Q","H2M", "H#", "Q2Q", "Q2M", "Q#",
-sliding_window =  [ "M2M", "M#"]
+		#
+sliding_window =  [ "Y2Y", "Y2H", "Y2Q", "Y2M", "H2H", "H2Q","H2M", "H#", "Q2Q", "Q2M", "Q#","M2M", "M#"]
 
 for sw in sliding_window:
 	print(sw)
-	QW_Path = "./二次加權/" + sw + "/Portfolio/訓練期/"
-	Q_Path = "./二次平均/" + sw + "/Portfolio/訓練期/"
-	Path = "./一次/" + sw + "/Portfolio/訓練期/"
+	QW_Path = "./二次加權/" + sw + "/Portfolio/測試期/"
+	Q_Path = "./二次平均/" + sw + "/Portfolio/測試期/"
+	Path = "./一次/" + sw + "/Portfolio/測試期/"
 
 	allQFileList = os.listdir(Q_Path)
 	allQWFileList = os.listdir(QW_Path)
@@ -24,10 +24,10 @@ for sw in sliding_window:
 	allList = os.walk(Q_Path)
 
 	file_name = []
-	output_dir = "./output/" + sw + "/"
+	output_dir = "./output_test/" + sw + "/"
 	mkdir(output_dir)
 	#output_file = "./output/"+sw+"_combine_all.csv"
-	output_file_comp = "./output/"+sw+"/" +sw+"_stock_comp.csv"
+	output_file_comp = "./output_test/"+sw+"/" +sw+"_stock_comp.csv"
 	#output_file_range = "./output/"+sw+"_fig_range.csv"
 	#fw = open(output_file, 'a')
 	fw_comp = open(output_file_comp, 'a')
@@ -44,9 +44,9 @@ for sw in sliding_window:
 		Path_file = Path + name
 		print(name)
 	
-		f = open(QW_Path_file)
-		f2 = open(Path_file)
-		f3 = open(Q_Path_file)
+		QW_f = open(QW_Path_file)
+		f = open(Path_file)
+		Q_f = open(Q_Path_file)
 		QW_flag = False
 		Q_flag = False
 		flag = False
@@ -57,10 +57,10 @@ for sw in sliding_window:
 
 		fw_comp.write(name + "\n")
 	#	fw_range.write(name + "\n")
-		for lines in f.readlines():
+		for lines in QW_f.readlines():
 			list = lines.split(',')
 			if(list[0] == "初始資金"):
-				init_fund = float(list[1])
+				QW_init_fund = float(list[1])
 			if(list[0] == "Stock#"):
 				for i in list[1:len(list)-1]:
 					fw_comp.write(i)
@@ -72,8 +72,10 @@ for sw in sliding_window:
 				QW_data.append(list[len(list)-1]);
 
 
-		for lines in f2.readlines():
+		for lines in f.readlines():
 			list = lines.split(',')
+			if(list[0] == "初始資金"):
+				init_fund = float(list[1])
 			if(list[0] == "Stock#"):
 				fw_comp.write(",")
 				for i in list[1:len(list)-1]:
@@ -86,8 +88,10 @@ for sw in sliding_window:
 			if(flag == True):
 				data.append(list[len(list)-1]);
 		
-		for lines in f3.readlines():
+		for lines in Q_f.readlines():
 			list = lines.split(',')
+			if(list[0] == "初始資金"):
+				Q_init_fund = float(list[1])
 			if(list[0] == "Stock#"):
 				fw_comp.write(",")
 				for i in list[1:len(list)-1]:
@@ -134,11 +138,11 @@ for sw in sliding_window:
 		Q_parameter = Q_parameter.split('+')
 		Q1_para = Q_parameter[0].split(' ')
 		Q2_para = Q_parameter[1].split('x')
-		Q_Y = float(Q1_para[0]) * x **2 + float(Q2_para[0]) * x + init_fund
+		Q_Y = float(Q1_para[0]) * x **2 + float(Q2_para[0]) * x + Q_init_fund
 		QW_parameter = QW_parameter.split('+')
 		QW1_para = QW_parameter[0].split(' ')
 		QW2_para = QW_parameter[1].split('x')
-		QW_Y = float(QW1_para[0]) * x **2 + float(QW2_para[0]) * x + init_fund
+		QW_Y = float(QW1_para[0]) * x **2 + float(QW2_para[0]) * x + QW_init_fund
 	
 		plt.figure(figsize=(11, 6), dpi=200)
 		plt.title(sw + '_'+ name, fontsize = 14)
@@ -160,7 +164,7 @@ for sw in sliding_window:
 
 		plt.legend(loc = 'upper left', fontsize = 12)
 
-		plt.savefig("./output/" + sw + "/" + sw + "_comp_" + name[0:len(name)-4] + ".png")
+		plt.savefig("./output_test/" + sw + "/" + sw + "_comp_" + name[0:len(name)-4] + ".png")
 		#plt.clf()
 		plt.close()
 		#plt.show()

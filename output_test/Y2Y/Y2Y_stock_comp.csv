@@ -1,0 +1,21 @@
+二次加權,一次,二次平均
+result_test_2010(2009 Q1).csv
+AAPL[0](6)MRK[17](23),AAPL[0](2),AAPL[0](4)IBM[10](6)
+result_test_2011(2010 Q1).csv
+,,AAPL[0](4)CAT[3](25)KO[14](9)MCD[15](1)
+result_test_2012(2011 Q1).csv
+,IBM[10](16),MCD[15](26)
+result_test_2013(2012 Q1).csv
+HD[9](20)TRV[22](21)V[25](6),DIS[6](9)HD[9](13)TRV[22](18)V[25](7),HD[9](12)TRV[22](19)V[25](7)
+result_test_2014(2013 Q1).csv
+BA[2](20)DD[7](27)MMM[16](10)NKE[19](2),BA[2](30)MMM[16](13)MRK[17](8)NKE[19](16)UNH[23](6),BA[2](26)DD[7](20)MMM[16](12)NKE[19](4)
+result_test_2015(2014 Q1).csv
+CSCO[4](16)HD[9](5)NKE[19](1),AAPL[0](11)MRK[17](20),AAPL[0](20)HD[9](4)NKE[19](1)PG[21](22)
+result_test_2016(2015 Q1).csv
+MCD[15](26),NKE[19](30)UNH[23](1),HD[9](26)
+result_test_2017(2016 Q1).csv
+GS[8](19)JPM[13](11)MSFT[18](5),CAT[3](14)MRK[17](23)PG[21](16)UNH[23](5),JPM[13](13)MRK[17](28)PG[21](22)UNH[23](4)
+result_test_2018(2017 Q1).csv
+AXP[1](13)BA[2](24)CAT[3](26)CVX[5](21)MCD[15](5)MSFT[18](11)PFE[20](3)UNH[23](9),AAPL[0](9)BA[2](8)DD[7](29)KO[14](13)MCD[15](19)MMM[16](27)UNH[23](2),AXP[1](13)BA[2](15)CAT[3](27)KO[14](7)MCD[15](11)PFE[20](2)UNH[23](4)V[25](5)
+result_test_2019(2018 Q1).csv
+MCD[15](21)MRK[17](9),MRK[17](9),
