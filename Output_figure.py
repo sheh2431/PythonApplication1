@@ -13,8 +13,8 @@ sliding_window =  [ "Y2Y", "Y2H", "Y2Q", "Y2M", "H2H", "H2Q","H2M", "H#", "Q2Q",
 
 for sw in sliding_window:
 	print(sw)
-	QW_Path = "./二次加權/" + sw + "/Portfolio/測試期/"
-	Q_Path = "./二次平均/" + sw + "/Portfolio/測試期/"
+	QW_Path = "./二次加權導引_(output_testing)/" + sw + "/Portfolio/測試期/"
+	Q_Path = "./二次平均導引_(output_testing)/" + sw + "/Portfolio/測試期/"
 	Path = "./一次/" + sw + "/Portfolio/測試期/"
 
 	allQFileList = os.listdir(Q_Path)
