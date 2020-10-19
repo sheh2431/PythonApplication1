@@ -8,171 +8,181 @@ def mkdir(path):
 	if  not folder:
 		os.makedirs(path)
 
-		#
-sliding_window =  [ "Y2Y", "Y2H", "Y2Q", "Y2M", "H2H", "H2Q","H2M", "H#", "Q2Q", "Q2M", "Q#","M2M", "M#"]
 
-for sw in sliding_window:
-	print(sw)
-	QW_Path = "./二次加權導引_(output_testing)/" + sw + "/Portfolio/測試期/"
-	Q_Path = "./二次平均導引_(output_testing)/" + sw + "/Portfolio/測試期/"
-	Path = "./一次/" + sw + "/Portfolio/測試期/"
+dir = "./動態滑動視窗/"
+target = dir +  "二次趨勢線測試_訓練65天_GNQTS_10000_10_50_0.0004"
+train_Path = target+"/Portfolio/訓練期/"
+check_test_Path =  target+"/Portfolio/check_測試期/"
+test_Path =  target+"/Portfolio/測試期/"
+#QW_Path = "./二次加權導引_(output_testing)/" + sw + "/Portfolio/測試期/"
+#Q_Path = "./二次平均導引_(output_testing)/" + sw + "/Portfolio/測試期/"
+#Path = "./一次/" + sw + "/Portfolio/測試期/"
+all_train_FileList = os.walk(train_Path)
+all_check_test_FileList = os.walk(check_test_Path)
+all_test_FileList = os.walk(test_Path)
+#allQFileList = os.listdir(Q_Path)
+#allQWFileList = os.listdir(QW_Path)
+#allFileList = os.listdir(Path)
 
-	allQFileList = os.listdir(Q_Path)
-	allQWFileList = os.listdir(QW_Path)
-	allFileList = os.listdir(Path)
+file_name = []
+output_train_dir = target + "/output_train/"
+output_test_dir = target + "/output_test/"
+output_check_test_dir = target + "/output_check_test/"
+mkdir(output_train_dir)
+mkdir(output_test_dir)
+mkdir(output_check_test_dir)
+#output_file = "./output/"+sw+"_combine_all.csv"
+#output_file_comp = dir + "stock_comp.csv"
+#output_file_range = "./output/"+sw+"_fig_range.csv"
+#fw = open(output_file, 'a')
+#fw_comp = open(output_file_comp, 'a')
+#fw_range = open(output_file_range, 'a')
+#fw.write("天數,二次加權,一次,二次平均\n")
+#fw_comp.write("日期,訓練,撐幾天\n")
+train_file_name = []
+check_test_file_name = []
+test_file_name = []
+for root, rdir, files in all_train_FileList:
+	train_file_name.append(files)
 
-	allList = os.walk(Q_Path)
+for root, rdir, files in all_check_test_FileList:
+	check_test_file_name.append(files)
 
-	file_name = []
-	output_dir = "./output_test/" + sw + "/"
-	mkdir(output_dir)
-	#output_file = "./output/"+sw+"_combine_all.csv"
-	output_file_comp = "./output_test/"+sw+"/" +sw+"_stock_comp.csv"
-	#output_file_range = "./output/"+sw+"_fig_range.csv"
-	#fw = open(output_file, 'a')
-	fw_comp = open(output_file_comp, 'a')
-	#fw_range = open(output_file_range, 'a')
-	#fw.write("天數,二次加權,一次,二次平均\n")
-	fw_comp.write("二次加權,一次,二次平均\n")
-	day_init = 3
-	for root, dir, files in allList:
-		file_name.append(files)
-	
-	for name in file_name[0]:
-		QW_Path_file = QW_Path + name
-		Q_Path_file = Q_Path + name
-		Path_file = Path + name
-		print(name)
-	
-		QW_f = open(QW_Path_file)
-		f = open(Path_file)
-		Q_f = open(Q_Path_file)
-		QW_flag = False
-		Q_flag = False
-		flag = False
-		QW_data = []
-		Q_data = []
-		data = []
+for root, rdir, files in all_test_FileList:
+	test_file_name.append(files)
 
 
-		fw_comp.write(name + "\n")
-	#	fw_range.write(name + "\n")
-		for lines in QW_f.readlines():
-			list = lines.split(',')
-			if(list[0] == "初始資金"):
-				QW_init_fund = float(list[1])
-			if(list[0] == "Stock#"):
-				for i in list[1:len(list)-1]:
-					fw_comp.write(i)
-			if(list[0] == "二次趨勢線"):
-				QW_parameter = list[1]
-			if(list[0] == "FS( 1 )"):
-				QW_flag = True
-			if(QW_flag == True):
-				QW_data.append(list[len(list)-1]);
+#for name in train_file_name[0]:
+#	print(name)
+#	train_Path_file = train_Path + name
+#	train_f = open(train_Path_file)
+#	train_flag = False
+#	train_data = []
+#	#fw_comp.write(name + ",")
+#	for lines in train_f.readlines():
+#		list = lines.split(',')
+#		if(list[0] == "初始資金"):
+#			train_init_fund = float(list[1])
+#		if(list[0] == "預期報酬"):
+#			train_parameter = float(list[1])
+#		#if(list[0] == "Stock#"):
+#		#	for i in list[1:len(list)-1]:
+#		#		fw_comp.write(i)
+#		if(list[0] == "FS( 1 )"):
+#			train_flag = True
+#		if(train_flag == True):
+#			train_data.append(list[len(list)-1])
+#	train_day = len(train_data)
+#	train_x = np.arange(1,train_day+1)
+#	new_train_data = []
+#	for i in train_data:
+#		i = float(i)
+#		new_train_data.append(i)
+#	train_y = new_train_data
+#	train_Y = train_parameter * train_x + train_init_fund
+#	plt.figure(1, figsize=(11, 6), dpi=200)
+#	plt.title(name, fontsize = 14)
+#	plt.xlabel("Day", fontsize = 16)
+#	plt.ylabel("Funds Standardization", fontsize = 16)
+#	plt.xlim(1, train_day)
+#	plt.xticks(fontsize = 10) # 設定坐標軸數字格式
+#	plt.yticks(fontsize = 10)
+#	plt.grid(color = 'gray', linestyle = '-', linewidth = 0.5) # 設定格線顏色、種類、寬度
+#	line = plt.plot(train_x, train_y, color = "#81C0C0", linewidth = 3, label =
+#	"Training Portfolio")
+#	Rline = plt.plot(train_x, train_Y, color = "#000079", linestyle = '--',
+#	linewidth = 3, label = "Linear Regression")
+#	plt.legend(loc = 'upper left', fontsize = 12)
+#	plt.savefig(output_train_dir + name[0:len(name)-4] + ".png")
+#	#plt.show()
+#	plt.close()
 
 
-		for lines in f.readlines():
-			list = lines.split(',')
-			if(list[0] == "初始資金"):
-				init_fund = float(list[1])
-			if(list[0] == "Stock#"):
-				fw_comp.write(",")
-				for i in list[1:len(list)-1]:
-					fw_comp.write(i)
+for name in check_test_file_name[0]:
+	print(name)
+	check_test_Path_file = check_test_Path + name
+	check_test_f = open(check_test_Path_file)
+	check_test_flag = False
+	check_test_data = []
+	for lines in check_test_f.readlines():
+		list = lines.split(',')
+		if(list[0] == "初始資金"):
+			check_test_init_fund = float(list[1])
+		if(list[0] == "二次趨勢線"):
+			check_test_parameter = list[1]
+		if(list[0] == "FS( 1 )"):
+			check_test_flag = True
+		if(check_test_flag == True):
+			check_test_data.append(list[len(list)-1])
+	check_test_day = len(check_test_data)
+	check_test_x = np.arange(1,check_test_day+1)
+	new_check_test_data = []
+	for i in check_test_data:
+		i = float(i)
+		new_check_test_data.append(i)
+	check_test_y = new_check_test_data
+	check_test_parameter = check_test_parameter.split('+')
+	check_test1_para = check_test_parameter[0].split(' ')
+	check_test2_para = check_test_parameter[1].split('x')
+	check_test_Y = float(check_test1_para[0]) *check_test_x **2 +	float(check_test2_para[0]) * check_test_x + check_test_init_fund
+	plt.figure(1, figsize=(11, 6), dpi=200)
+	plt.title(name, fontsize = 14)
+	plt.xlabel("Day", fontsize = 16)
+	plt.ylabel("Funds Standardization", fontsize = 16)
+	plt.xlim(1, check_test_day)
+	plt.xticks(fontsize = 10) # 設定坐標軸數字格式
+	plt.yticks(fontsize = 10)
+	plt.grid(color = 'gray', linestyle = '-', linewidth = 0.5) # 設定格線顏色、種類、寬度
+	check_test_line = plt.plot(check_test_x, check_test_y, color = '#FFA042', linewidth = 3, label = "Check Test Portfolio")
+	check_test_QRline = plt.plot(check_test_x, check_test_Y, color = '#FF0000', linestyle = '--', linewidth = 3, label = "Quadratic Regression")
+	plt.legend(loc = 'upper left', fontsize = 12)
+	plt.savefig(output_check_test_dir + name[0:len(name)-4] + ".png")
+	plt.close()
 
-			if(list[0] == "預期報酬"):
-				parameter = float(list[1])
-			if(list[0] == "FS( 1 )"):
-				flag = True
-			if(flag == True):
-				data.append(list[len(list)-1]);
-		
-		for lines in Q_f.readlines():
-			list = lines.split(',')
-			if(list[0] == "初始資金"):
-				Q_init_fund = float(list[1])
-			if(list[0] == "Stock#"):
-				fw_comp.write(",")
-				for i in list[1:len(list)-1]:
-					fw_comp.write(i)
-				fw_comp.write("\n")
-			if(list[0] == "二次趨勢線"):
-				Q_parameter = list[1]
-			if(list[0] == "FS( 1 )"):
-				Q_flag = True
-			if(Q_flag == True):
-				Q_data.append(list[len(list)-1]);
-
-		c = 1
-		day = len(Q_data)
-		#print(day)
-		#fw.write(name + "," + str(day) + "\n")
-		s = day_init
-		e = s+day-1
-		day_init = e+2
-	
-		#fw_range.write("'y2y_combine_all'!$b$"+str(s) +":$d$" + str(e) +"\n")
-		for i, j, k in zip(QW_data, data, Q_data):
-			w_data = "day " + str(c) +","+ i[0:len(i)-1] + "," + j[0:len(j)-1] + "," + k;
-			#fw.write(w_data)
-			c = c+1
-		x = np.arange(1,day+1)
-		QW_x = x
-		Q_x = x
-		new_data = []
-		new_QW_data = []
-		new_Q_data = []
-		for i, j, k in zip(QW_data, data, Q_data):
-			i = float(i)
-			j = float(j)
-			k = float(k)
-			new_QW_data.append(i)
-			new_data.append(j)
-			new_Q_data.append(k)
-		y = new_data
-		QW_y = new_QW_data
-		Q_y = new_Q_data
-		#趨勢線
-		Y = parameter * x + init_fund
-		Q_parameter = Q_parameter.split('+')
-		Q1_para = Q_parameter[0].split(' ')
-		Q2_para = Q_parameter[1].split('x')
-		Q_Y = float(Q1_para[0]) * x **2 + float(Q2_para[0]) * x + Q_init_fund
-		QW_parameter = QW_parameter.split('+')
-		QW1_para = QW_parameter[0].split(' ')
-		QW2_para = QW_parameter[1].split('x')
-		QW_Y = float(QW1_para[0]) * x **2 + float(QW2_para[0]) * x + QW_init_fund
-	
-		plt.figure(figsize=(11, 6), dpi=200)
-		plt.title(sw + '_'+ name, fontsize = 14)
-		plt.xlabel("Day", fontsize = 16)
-		plt.ylabel("Funds Standardization", fontsize = 16)
-		plt.xlim(1, day)
-		plt.xticks(fontsize = 10)                                 # 設定坐標軸數字格式
-		plt.yticks(fontsize = 10)
-		plt.grid(color = 'gray', linestyle = '-', linewidth = 0.5)  # 設定格線顏色、種類、寬度
-		line = plt.plot(x, y, color = "#81C0C0", linewidth = 3, label = "Linear Portfolio")
-		Rline = plt.plot(x, Y, color = "#000079", linestyle = '--', linewidth = 3, label = "Linear Regression")
-		Q_line = plt.plot(Q_x,Q_y, color = '#1AFD9C',  linewidth = 3, label = "Quadratic Average Portfolio")
-		QARline = plt.plot(x, Q_Y, color = '#006030', linestyle = '--', linewidth = 3, label = "Quadratic Average Regression")
-		QW_line = plt.plot(QW_x,QW_y, color = '#FF9D6F',  linewidth = 3, label = "Quadratic Weighted Portfolio")
-		QWRline = plt.plot(x, QW_Y, color = 'red', linestyle = '--', linewidth = 3, label = "Quadratic Weighted Regression")
-		#plt.plot(x,y)
-		#plt.plot(Q_x,Q_y)
-		#plt.plot(QW_x,QW_y)
-
-		plt.legend(loc = 'upper left', fontsize = 12)
-
-		plt.savefig("./output_test/" + sw + "/" + sw + "_comp_" + name[0:len(name)-4] + ".png")
-		#plt.clf()
-		plt.close()
-		#plt.show()
-	#	f.close()
-	#	f2.close()
-	#	f3.close()
-	#fw.close()
-	#fw_range.close()
-	fw_comp.close()
-
-
+#for name in test_file_name[0]:
+#	print(name)
+#	test_Path_file = test_Path + name
+#	test_f = open(test_Path_file)
+#	test_flag = False
+#	test_data = []
+#	for lines in test_f.readlines():
+#		list = lines.split(',')
+#		if(list[0] == "初始資金"):
+#			test_init_fund = float(list[1])
+#		if(list[0] == "二次趨勢線"):
+#			test_Q_parameter = list[1]
+#		if(list[0] == "一次預期報酬"):
+#			test_L_parameter = float(list[1])
+#		if(list[0] == "FS( 1 )"):
+#			test_flag = True
+#		if(test_flag == True):
+#			test_data.append(list[len(list) - 1])
+#	test_day = len(test_data)
+#	test_x = np.arange(1,test_day + 1)
+#	new_test_data = []
+#	for i in test_data:
+#		i = float(i)
+#		new_test_data.append(i)
+#	test_y = new_test_data
+#	test_L_Y = test_L_parameter * test_x + test_init_fund
+#	test_Q_parameter = test_Q_parameter.split('+')
+#	test_Q1_para = test_Q_parameter[0].split(' ')
+#	test_Q2_para = test_Q_parameter[1].split('x')
+#	if(test_day >= 3):
+#		test_Q_Y = float(test_Q1_para[0]) * test_x ** 2 + float(test_Q2_para[0]) * test_x + test_init_fund
+#	plt.figure(1, figsize=(11, 6), dpi=200)
+#	plt.title(name, fontsize = 14)
+#	plt.xlabel("Day", fontsize = 16)
+#	plt.ylabel("Funds Standardization", fontsize = 16)
+#	plt.xlim(1, test_day)
+#	plt.xticks(fontsize = 10)                                 # 設定坐標軸數字格式
+#	plt.yticks(fontsize = 10)
+#	plt.grid(color = 'gray', linestyle = '-', linewidth = 0.5)  # 設定格線顏色、種類、寬度
+#	test_line = plt.plot(test_x, test_y, color = "#81C0C0", linewidth = 3, label = "Testing Portfolio")
+#	test_LRline = plt.plot(test_x, test_L_Y, color = "#000079", linestyle = '--', linewidth = 3, label = "Linear Regression")
+#	if(test_day >= 3):
+#		test_QRline = plt.plot(test_x, test_Q_Y, color = "#006030", linestyle = '--', linewidth = 3, label = "Quadratic Regression")
+#	plt.legend(loc = 'upper left', fontsize = 12)
+#	plt.savefig(output_test_dir + name[0:len(name) - 4] + ".png")
+#	plt.close()
+#fw_comp.close()
