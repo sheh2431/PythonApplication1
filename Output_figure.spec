@@ -1,5 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
-
+import sys
+sys.setrecursionlimit(9000000)
 block_cipher = None
 
 
@@ -7,7 +8,7 @@ a = Analysis(['Output_figure.py'],
              pathex=['D:\\Yuchi\\Projects\\PythonApplication1'],
              binaries=[],
              datas=[],
-             hiddenimports=[],
+             hiddenimports=['numpy'],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
